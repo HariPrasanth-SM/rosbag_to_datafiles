@@ -4,7 +4,7 @@
   <name>rosbag_to_datafiles</name>
   <version>0.0.0</version>
   <description>TODO: Package description</description>
-  <maintainer email="harry@todo.todo">harry</maintainer>
+  <maintainer email="sm.hariprasanth@gmail.com">Hari Prasanth S.M.</maintainer>
   <license>TODO: License declaration</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>

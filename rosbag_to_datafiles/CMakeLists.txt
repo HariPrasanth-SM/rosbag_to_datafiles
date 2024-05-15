@@ -7,15 +7,33 @@ endif()
 
 # find dependencies
 find_package(ament_cmake REQUIRED)
-# uncomment the following section in order to fill in
-# further dependencies manually.
-# find_package(<dependency> REQUIRED)
+find_package(rclcpp REQUIRED)
+find_package(sensor_msgs REQUIRED)
+find_package(nav_msgs REQUIRED)
+find_package(std_srvs REQUIRED)
+find_package(pcl_conversions REQUIRED)
+find_package(pcl_ros REQUIRED)
+find_package(Boost REQUIRED COMPONENTS date_time)
 
+# Add executable
 add_executable(rosbag_subscriber src/rosbag_subscriber.cpp)
+
+# Include directories
 target_include_directories(rosbag_subscriber PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:include>)
-target_compile_features(rosbag_subscriber PUBLIC c_std_99 cxx_std_17)  # Require C99 and C++17
+# target_include_directories(rosbag_subscriber PRIVATE include)
+
+# Link libraries
+ament_target_dependencies(rosbag_subscriber 
+  rclcpp 
+  sensor_msgs 
+  nav_msgs
+  pcl_conversions 
+  pcl_ros 
+  std_srvs 
+)
+
 
 install(TARGETS rosbag_subscriber
   DESTINATION lib/${PROJECT_NAME})
