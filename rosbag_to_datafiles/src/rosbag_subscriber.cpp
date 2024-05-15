@@ -5,6 +5,7 @@
 #include "pcl_conversions/pcl_conversions.h"
 #include "pcl/io/pcd_io.h"
 #include "fstream"
+#include <iomanip> 
 
 class RosbagSubscriber : public rclcpp::Node {
 public:
@@ -81,7 +82,7 @@ private:
         }
         for (std::size_t i = 0; i < odom_timestamp.size(); ++i) 
         {
-            odom_commands_file << odom_timestamp[i] << ", " << odom_linear_velocity[i] << ", " << odom_angular_velocity[i] << std::endl;
+            odom_commands_file << std::fixed << std::setprecision(8) << odom_timestamp[i] << ", " << odom_linear_velocity[i] << ", " << odom_angular_velocity[i] << std::endl;
         }
         odom_commands_file.close();
 
@@ -95,7 +96,7 @@ private:
         }
         for (std::size_t i = 0; i < odom_timestamp.size(); ++i) 
         {
-            odom_pose_file << odom_timestamp[i] << ", " << odom_pose_x[i] << ", " << odom_pose_y[i] << std::endl;
+            odom_pose_file <<  std::fixed << std::setprecision(8) << odom_timestamp[i] << ", " << odom_pose_x[i] << ", " << odom_pose_y[i] << std::endl;
         }
         odom_pose_file.close();
 
@@ -109,7 +110,7 @@ private:
         }
         for (std::size_t i = 0; i < cloud_timestamp.size(); ++i) 
         {
-            cloud_timestamps_file << cloud_timestamp[i] << std::endl;
+            cloud_timestamps_file <<  std::fixed << std::setprecision(8) << cloud_timestamp[i] << std::endl;
         }
         cloud_timestamps_file.close();
         
